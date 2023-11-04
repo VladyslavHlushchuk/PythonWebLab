@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Feedback Form</title>
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+<body>
+
+<div class="container mt-5">
+        <!-- Форма для відгуку -->
+        <form method="POST" action="/">
+            <div class="form-group">
+                <label for="name">Ім'я:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Електронна адреса:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Відгук:</label>
+                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Надіслати</button>
+        </form>
+
+        <!-- Виведення відгуків -->
+        {% for feedback in feedbacks %}
+        <div class="alert alert-dismissible alert-primary mt-3">
+            <strong>{{ feedback.name }}</strong> ({{ feedback.email }}) написав(ла):
+            <br>
+            {{ feedback.message }}
+            <form method="POST" action="/delete/{{ feedback.id }}" class="mt-2">
+                <button type="submit" class="btn btn-danger">Видалити</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+{% from 'fieldMacro.html' import displayField %}
+{% extends 'base.html' %}
+{% block title %}Інформація{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Інформація</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-4">
+                    <h4 class="mb-3">Ласкаво просимо, <strong>{{ current_user.username }}</strong></h4>
+                    <form action="{{ url_for('logout') }}" method="POST" class="mb-3">
+                        <button type="submit" class="btn btn-primary">Вийти</button>
+                    </form>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="mb-3">Встановити куку</h4>
+                    <form action="{{ url_for('setCookie') }}" method="POST">
+                        <div class="mb-3">
+                            <label for="key" class="form-label">Ключ</label>
+                            <input type="text" class="form-control" id="key" name="key" placeholder="Ключ" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="value" class="form-label">Значення</label>
+                            <input type="text" class="form-control" id="value" name="value" placeholder="Значення" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="days" class="form-label">Термін дії (в днях)</label>
+                            <input type="number" class="form-control" id="days" name="days" placeholder="1" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Встановити куку</button>
+                    </form>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="mb-3">Видалити куку</h4>
+                    <form action="{{ url_for('deleteCookieByKey') }}" method="POST">
+                        <div class="mb-3">
+                            <label for="deleteKey" class="form-label">Ключ</label>
+                            <input type="text" class="form-control" id="deleteKey" name="key" placeholder="Ключ" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Видалити за ключем</button>
+                    </form>
+                    <form action="{{ url_for('deleteCookieAll') }}" method="POST" class="mt-3">
+                        <button type="submit" class="btn btn-primary">Видалити всі</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <h4 class="mb-2">Куки</h4>
+                    <table class="table table-fixed"  style="width: 400px;">
+    <thead>
+        <tr>
+            <th scope="col" class="col-2">#</th>
+            <th scope="col" class="col-4">Ключ</th>
+            <th scope="col" class="col-6">Значення</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key, value in cookies.items() %}
+            <tr>
+                <th scope="row" class="col-2">{{ loop.index }}</th>
+                <td class="col-4">{{ key }}</td>
+                <td class="col-6">{{ value }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+                </div>
+<br><br>
+                 <a href="{{ url_for('resetPassword') }}">
+            <button class="btn btn-primary">Змінити пароль</button>
+        </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

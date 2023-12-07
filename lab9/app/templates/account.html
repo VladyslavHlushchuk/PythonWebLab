@@ -1,0 +1,46 @@
+{% from 'fieldMacro.html' import displayField %}
+{% extends 'base.html' %}
+{% block title %}Обліковий запис{% endblock %}
+{% block content %}
+<br>
+    <br><br>
+    <div class="container mt-50">
+        <div class="row justify-content-center">
+        <br><br>
+            <div class="col-3">
+                <img src="{{ url_for('static', filename='image/' + current_user.image) }}" alt="Фото" class="accountPhoto">
+            </div>
+            <div class="col-4">
+                <h1>{{ current_user.username }}</h1>
+                <small class="text-body-tertiary">
+                    останній візит {{ current_user.lastSeen.strftime("%d-%m-%Y %H:%M:%S") }}
+                </small>
+                <br><br>
+                <h4>{{ current_user.email }}</h4>
+                 <br>
+                <p>{{ current_user.aboutMe }}</p>
+            </div>
+        </div>
+    </div>
+    <br><hr>
+    <div class="container">
+        <br>
+        <h2>Інформація про обліковий запис</h2>
+        <div class="width-300">
+          <form method="POST" novalidate enctype="multipart/form-data">
+                {{ form.csrf_token }}
+                {{ displayField(form.username, "Ім'я користувача") }}
+                {{ displayField(form.email, "Електронна пошта") }}
+                {{ displayField(form.aboutMe, "") }}
+                {{ displayField(form.image, "") }}
+                <br><br>
+                {{ form.submit(class="btn btn-primary width-100 negative-mt-20") }}
+            </form>
+            <br><br>
+            <a href="{{ url_for('resetPassword') }}">
+                <button class="btn btn-primary width-100">Скинути пароль</button>
+            </a>
+        </div>
+    </div>
+    <br><br>
+{% endblock %}

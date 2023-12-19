@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+Home
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container mt-30">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <br> <br>
+               <p>Мене звати Владислав. Я студент 3-го курсу ПНУ, навчаюсь на спеціальності інженерія програмного забезпечення
+                Я б описав себе як відповідальну, самоорганізовану, комунікабельну, впевнену, пунктуальну, старанну та креативну
+                 особу. Я можу ефективно працювати як в команді, так і самостійно. Зараз я шукаю можливість для роботи, яка
+                 дозволить мені отримати нові знання та досвід, і покращити свої професійні навички. </p>
+            </div>
+            <div class="col-4">
+                <img src="{{ url_for('static', filename='image/me.jpg' ) }}" alt="MyPhoto" class="me" >
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-80">
+        <h2>Хоббі</h2>
+        <br>
+        <span class="border-primary">
+           У вільний час я читаю книжки або ж граю на гітарі
+        </span><br><br>
+        <span class="border-primary">
+          Граю у відео ігри
+        </span><br><br>
+        <span class="border-primary">
+            І вдосконалюю себе
+        </span>
+    </div>
+
+
+{% endblock %}
+
+
+
+

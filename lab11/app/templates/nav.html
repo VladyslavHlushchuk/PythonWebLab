@@ -1,0 +1,40 @@
+{% set menu = {
+    "Головна": url_for('portfolio.index'),
+    "Навчання": url_for('portfolio.study'),
+    "Скіли": url_for('portfolio.skills'),
+    "Контакти": url_for('portfolio.contacts'),
+    "Вхід": url_for('auth.login'),
+    "Реєстрація": url_for('auth.registration'),
+    "Todo": url_for('todo.todos'),
+    "Користувачі": url_for('auth.users'),
+    "Акаунт": url_for('auth.account'),
+    "Пости": url_for('post.posts'),
+    "Вийти": url_for('auth.logout')
+} %}
+
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+  <div class="container justify-content-center">
+      <a class="navbar-brand" href="{{ url_for('portfolio.index') }}">Резюме Владислава Глущука</a>
+      <div class="collapse navbar-collapse flex-grow-0" id="navbarColor01">
+        <ul class="navbar-nav">
+          {% for name, url in menu.items() %}
+            {% if current_user.is_authenticated %}
+              {% if name != "Вхід" and name != "Реєстрація" %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url }}">{{ name }}</a>
+                </li>
+              {% endif %}
+            {% else %}
+              {% if name != "Вийти" and name != "Акаунт" %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url }}">{{ name }}</a>
+              </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+</nav>
+
+

@@ -1,0 +1,36 @@
+.me {
+      width: 300px;
+    height: 400px;
+}
+
+.usersSmallPhoto {
+    width: 80px;
+    height: 80px;
+    border-radius: 15%;
+}
+
+.accountPhoto {
+    width: 200px;
+    height: 200px;
+    border-radius: 15%;
+}
+
+.width-300{ width: 300px;}
+
+.postPhoto-small {
+     width: 120px;
+    height: 120px;
+    border-radius: 15%;
+}
+
+.postPhoto-large {
+    width: 350px;
+    height: 350px;
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}
+
+.post-text {
+    font-size: 20px;
+}
